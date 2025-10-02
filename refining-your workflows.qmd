@@ -1,7 +1,7 @@
 ---
 title: "Refining your plots, reports and code"
 subtitle: 'MSc in Statistics 2025/26, Imperial College London'
-author: "Zak Varty"
+author: "06061108"
 format:
   html:
     toc: true
@@ -78,7 +78,7 @@ install.packages("palmerpengins")
 
 ```{r}
 #| eval: false
-install.packages("palmerpengins")
+install.packages("palmerpenguins")
 ```
 
 
@@ -96,7 +96,6 @@ plot(x = penguins$bill_length_mm,
 plot(x = penguins$bill_length_mm, 
      y = penguins$bill_depth_mm)
 ```
-
 
 ## Multiple outputs
 
@@ -595,6 +594,47 @@ Where a figure or table is mentioned in the main text you should explain _how_ i
   - [8 - Exploratory data analysis](https://eds-notes.zakvarty.com/302-edav-analysis)
   - [9 - Data visualisation](https://eds-notes.zakvarty.com/303-edav-visualisation)
 - [The TidyTuesday Cookbook](https://nrennie.rbind.io/art-of-viz/) 
+
+
+# My Own Analysis
+## Import Libraries
+```{r}
+library(knitr)
+```
+
+## Tables
+
+How many penguins of each islands in the dataset?
+```{r}
+#| label: tbl-island-penguin
+#| tbl-cap: "Counts of Palmer penguin in each island."
+
+island_counts <- table(penguins$island)
+kable(island_counts, col.names = c("Island", "Count"))
+```
+@tbl-island-penguin shows the count of penguins in each
+
+```{r}
+# fit into a linear model
+flipper_len_lm <- lm(formula = flipper_length_mm ~ 1 + island, penguins)
+flipper_len_lm_coeff <- summary(flipper_len_lm)$coefficients[,1:2]
+
+# display using kable
+# reset row names, column names 
+knitr::kable(x = flipper_len_lm_coeff,
+             col.names = c("MLE", "Std. Err"),
+             )
+flipper_len_lm
+```
+## Basic Plots {#island-plots}
+
+@island-plots focuses on analysis on the penguins of each island
+
+```{r}
+#plot()
+```
+
+
 
 # Review 
 
