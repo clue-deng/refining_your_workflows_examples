@@ -635,6 +635,11 @@ flipper_len_lm
 ```
 
 
+the cdf associated with @eq-cauchy is given by
+
+$$
+p(x) = \frac{1}{\pi ( 1 + x^2)}, \quad x \in \mathbb{R}.
+$$ {#eq-cauchy}
 
 # Review 
 
